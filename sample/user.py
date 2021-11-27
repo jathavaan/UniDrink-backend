@@ -172,5 +172,5 @@ class User:
                f"Password: {self.get_password()}"
 
 
-user = User("Jathavaan", "Shankarr", datetime.datetime(2001, 7, 12), "jathavaan12", "Jathavaam@12")
+user = User("Martin", "Bergstø", datetime.datetime(2001, 9, 4), "jathavaan12", "Jathavaam@12")
 print(user.to_string())
