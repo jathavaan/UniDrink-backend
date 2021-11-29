@@ -32,8 +32,6 @@ class IAPI(ABC):
 
 
 class LeagueAPI(API, IAPI):
-    pass
-
     def __init__(self):
         super().__init__()
 
@@ -79,6 +77,9 @@ class LeagueAPI(API, IAPI):
             if league['league_id'] == id:
                 return league['name']
 
+    def get_standings(self, id: int) -> dict:
+        self.__id_validation(id)
+
     def __id_validation(self, id: int):
         if not isinstance(id, int):
             raise TypeError
@@ -87,12 +88,43 @@ class LeagueAPI(API, IAPI):
             raise ValueError("Could not find any leagues that have the following ID:", id)
 
 
+class Season(API, IAPI):
+    def __init__(self, season_id: int):
+        if not isinstance(season_id, int):
+            raise TypeError
+
+        super().__init__()
+
+        headers = {
+            "apikey": super().get_api_key()
+        }
+
+        url = f"{super().get_base_url()}"
+
+    def get_response(self) -> requests:
+        pass
+
+    def get_status_code(self) -> int:
+        pass
+
+    def get_json(self) -> dict:
+        pass
+
+
 class TeamAPI(API, IAPI):
 
-    def __init__(self, leagueId: int):
+    def __init__(self, league_id: int):
+        if not isinstance(league_id, int):
+            raise TypeError
+
         super().__init__()
-        league_ids = LeagueAPI().get_league_ids()
-        print(league_ids)
+        self.__leagueAPI = LeagueAPI()
+
+        if league_id not in self.get_league_api().get_league_ids():
+            raise ValueError("Could not find any leagues that have the following ID:", league_id)
+
+    def get_league_api(self) -> LeagueAPI:
+        return self.__leagueAPI
 
     def get_response(self) -> requests:
         pass
