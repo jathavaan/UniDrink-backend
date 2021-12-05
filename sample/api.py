@@ -3,190 +3,122 @@ API documentation:
 https://app.sportdataapi.com/documentation
 """
 import requests
-from abc import ABC, abstractmethod
 
 
-class API(ABC):
-
-    @abstractmethod
+class API:
     def __init__(self):
         self.__base_url = "https://app.sportdataapi.com/api/v1/soccer/"
         self.__api_key = "35180e80-4c9a-11ec-b94b-1b36a8153030"
+        self.__leagues = self.__setup_leagues()
+        self.__seasons = self.__setup_seasons()
+        self.__teams = self.__setup_teams()
 
-    def get_base_url(self) -> str:
+    def __get_base_url(self) -> str:
         return self.__base_url
 
-    def get_api_key(self) -> str:
+    def __get_api_key(self) -> str:
         return self.__api_key
 
+    # LEAGUE
 
-class IAPI(ABC):
-    @abstractmethod
-    def get_response(self) -> requests: pass
-
-    @abstractmethod
-    def get_status_code(self) -> int: pass
-
-    @abstractmethod
-    def get_json(self) -> dict: pass
-
-
-class LeagueAPI(API, IAPI):
-    def __init__(self):
-        super().__init__()
+    def __setup_leagues(self) -> requests:
+        url = f"{self.__get_base_url()}leagues"
 
         headers = {
-            "apikey": super().get_api_key()
+            "apikey": self.__get_api_key()
         }
 
         params = {
             ("subscribed", True)
         }
 
-        url = f"{super().get_base_url()}leagues/"
-        self.__response = requests.get(url, headers=headers, params=params)
+        return requests.get(url, headers=headers, params=params).json()
 
-    def get_response(self) -> requests:
-        return self.__response
-
-    def get_status_code(self) -> int:
-        return self.get_response().status_code
-
-    def get_json(self) -> dict:
-        return self.get_response().json()['data']
+    def get_leagues(self) -> list[dict]:
+        return self.__leagues['data']
 
     def get_league_ids(self) -> list[int]:
-        league_data = self.get_json()
-        id_list = []
-        for data in league_data:
-            id_list.append(data['league_id'])
+        return list(map(lambda leagues: leagues['league_id'], self.get_leagues()))
 
-        return id_list
+    # SEASON
 
-    def get_country_id(self, id: int) -> int:
-        self.__id_validation(id)
+    def __setup_seasons(self):
+        seasons = []
+        for league_id in self.get_league_ids():
+            url = f"{self.__get_base_url()}seasons"
 
-        for league in self.get_json():
-            if league['league_id'] == id:
-                return league['country_id']
+            headers = {
+                "apikey": self.__get_api_key()
+            }
 
-    def get_name(self, id: int) -> str:
-        self.__id_validation(id)
+            params = (
+                ("league_id", str(league_id)),
+            )
 
-        for league in self.get_json():
-            if league['league_id'] == id:
-                return league['name']
+            seasons.append(requests.get(url, headers=headers, params=params).json()['data'])
 
-    def get_standings(self, id: int) -> dict:
-        self.__id_validation(id)
+        return seasons
 
-    def __id_validation(self, id: int):
-        if not isinstance(id, int):
-            raise TypeError
+    def get_seasons(self) -> list:
+        return self.__seasons
 
-        if id not in self.get_league_ids():
-            raise ValueError("Could not find any leagues that have the following ID:", id)
-
-
-class Season(API, IAPI):
-    def __init__(self, season_id: int):
-        if not isinstance(season_id, int):
-            raise TypeError
-
-        super().__init__()
-
-        headers = {
-            "apikey": super().get_api_key()
-        }
-
-        url = f"{super().get_base_url()}"
-
-    def get_response(self) -> requests:
-        pass
-
-    def get_status_code(self) -> int:
-        pass
-
-    def get_json(self) -> dict:
-        pass
-
-
-class TeamAPI(API, IAPI):
-
-    def __init__(self, league_id: int):
+    def get_seasons_by_id(self, league_id: int) -> list:
         if not isinstance(league_id, int):
-            raise TypeError
+            raise TypeError("Invalid datatype")
 
-        super().__init__()
-        self.__leagueAPI = LeagueAPI()
-
-        if league_id not in self.get_league_api().get_league_ids():
+        if league_id not in self.get_league_ids():
             raise ValueError("Could not find any leagues that have the following ID:", league_id)
 
-    def get_league_api(self) -> LeagueAPI:
-        return self.__leagueAPI
+        seasons = self.get_seasons()
+        s = []
 
-    def get_response(self) -> requests:
-        pass
+        for league in seasons:
+            for season in league:
+                if season['league_id'] == league_id:
+                    s.append(season)
 
-    def get_status_code(self) -> int:
-        pass
+        return s
 
-    def get_json(self) -> dict:
-        pass
+    def get_current_season(self, league_id: int):
+        return next(filter(lambda season: season['is_current'] == 1, self.get_seasons_by_id(league_id)))
 
+    # MATCH
 
-class MatchAPI(API, IAPI):
+    # TEAM
 
-    def __init__(self):
-        super().__init__()
+    def __setup_teams(self):
+        leagues = self.get_leagues()
+        league_ids = self.get_league_ids()
+        teams = []
 
-    def get_response(self) -> requests:
-        pass
+        for league_id in league_ids:
+            country_id = next(filter(lambda league: league['league_id'] == league_id, leagues))['country_id']
 
-    def get_status_code(self) -> int:
-        pass
+            url = f"{self.__get_base_url()}teams"
 
-    def get_json(self) -> dict:
-        pass
+            headers = {
+                "apikey": self.__get_api_key()
+            }
 
+            params = (
+                ("country_id", country_id),
+            )
 
-class PlayerAPI(API, IAPI):
+            j = requests.get(url, headers=headers, params=params).json()
 
-    def __init__(self):
-        super().__init__()
+            teams.append(j)
 
-    def get_response(self) -> requests:
-        pass
+        return teams
 
-    def get_status_code(self) -> int:
-        pass
+    def get_teams(self):
+        return self.__teams
 
-    def get_json(self) -> dict:
-        pass
-
-
-class StatisticsAPI(API, IAPI):
-
-    def __init__(self):
-        super().__init__()
-
-    def get_response(self) -> requests:
-        pass
-
-    def get_status_code(self) -> int:
-        pass
-
-    def get_json(self) -> dict:
-        pass
+    # PLAYER
 
 
-api = LeagueAPI()
-print(api.get_json())
-print(api.get_league_ids())
-print(api.get_name(237))
-print(api.get_country_id(237))
-
-print()
-
-api2 = TeamAPI(1)
+api = API()
+print("Ligaer:", api.get_leagues())
+print("Liga ID:", api.get_league_ids())
+print("Sesonger:", api.get_seasons())
+print("Pågående sesong:", api.get_current_season(237))
+print(api.get_teams())
