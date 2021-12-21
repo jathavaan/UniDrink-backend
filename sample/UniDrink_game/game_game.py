@@ -1,4 +1,4 @@
-from sample.user import User
+from sample.UniDrink_game.game_user import User
 
 
 class Game:

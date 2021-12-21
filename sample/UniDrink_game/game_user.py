@@ -170,7 +170,3 @@ class User:
                f"Date of birth [yyyy-MM-dd hh:mm:ss]: {self.get_date_of_birth()}\n" \
                f"Username: {self.get_username()}\n" \
                f"Password: {self.get_password()}"
-
-
-user = User("Martin", "Bergstø", datetime.datetime(2001, 9, 4), "jathavaan12", "Jathavaam@12")
-print(user.to_string())

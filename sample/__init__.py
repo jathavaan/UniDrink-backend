@@ -1,27 +1,15 @@
-from flask import Flask, redirect, url_for
-from user import User
-import datetime
+from flask import Flask
+from api import API
+
+from sample.UniDrink_game.game_user import User
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def home():
-    try:
-        user = User("Jathavaan", "Shankarr", datetime.datetime(2001, 7, 12), "pogbanathan", "G@laxys6")
-        return f"<h3>{user.to_string()}</h3>"
-    except Exception as e:
-        return str(e)
-
-
-@app.route('/<name>')
-def user(name):
-    return f"Hello {name}"
-
-
-@app.route('/admin')
-def admin():
-    return redirect(url_for('home'))
+    api = API()
+    return str(api.get_leagues())
 
 
 if __name__ == '__main__':

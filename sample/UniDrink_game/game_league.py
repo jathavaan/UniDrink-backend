@@ -1,6 +1,6 @@
-from sample.game import Game
-from sample.team import Team
-from sample.user import User
+from sample.UniDrink_game.game_game import Game
+from sample.UniDrink_game.game_team import Team
+from sample.UniDrink_game.game_user import User
 
 
 class League:

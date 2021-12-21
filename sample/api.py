@@ -12,6 +12,7 @@ class API:
         self.__leagues = self.__setup_leagues()
         self.__seasons = self.__setup_seasons()
         self.__teams = self.__setup_teams()
+        self.__standings = self.__setup_standings()
 
     def __get_base_url(self) -> str:
         return self.__base_url
@@ -39,6 +40,49 @@ class API:
 
     def get_league_ids(self) -> list[int]:
         return list(map(lambda leagues: leagues['league_id'], self.get_leagues()))
+
+    def __setup_standings(self):
+        url = f"{self.__get_base_url()}standings"
+
+        headers = {
+            "apikey": self.__get_api_key()
+        }
+
+        standings = []
+
+        for league_id in self.get_league_ids():
+            current_season = self.get_current_season(league_id)
+            season_id = current_season['season_id']
+
+            params = (
+                ("season_id", str(season_id)),
+            )
+
+            standing = requests.get(url, headers=headers, params=params).json()['data']
+            standings.append(standing)
+
+        return standings
+
+    def get_standings(self):
+        return self.__standings
+
+    def get_league_standings(self, league_id: int):
+        if not isinstance(league_id, int):
+            raise TypeError("Invalid datatype")
+
+        if league_id not in self.get_league_ids():
+            raise ValueError("Could not find any leagues with the ID", league_id)
+
+        return next(filter(lambda s: s['league_id'] == league_id, self.get_standings()))['standings']
+
+    def get_league_by_id(self, league_id: int):
+        if not isinstance(league_id, int):
+            raise TypeError("Invalid datatype")
+
+        if league_id not in self.get_league_ids():
+            raise ValueError("Could not find any leagues with the ID", league_id)
+
+        return next(filter(lambda league: league['league_id'] == league_id, self.get_leagues()))
 
     # SEASON
 
@@ -110,15 +154,42 @@ class API:
 
         return teams
 
-    def get_teams(self):
+    def get_teams(self) -> list:
         return self.__teams
 
-    # PLAYER
+    def get_teams_by_league(self, league_id: int):
+        if not isinstance(league_id, int):
+            raise TypeError("Invalid datatype")
+
+        if league_id not in self.get_league_ids():
+            raise ValueError("Could not find any leagues with the ID", league_id)
+
+        standings = self.get_league_standings(league_id)
+        teams = self.get_teams()
+        team_ids = list(map(lambda team: team['team_id'], standings))
+        team_dicts = []
+        for country in teams:
+            league = country['data']
+            for team in league:
+                if team['team_id'] in team_ids:
+                    team_dicts.append(team)
+
+        return team_dicts
 
 
 api = API()
-print("Ligaer:", api.get_leagues())
-print("Liga ID:", api.get_league_ids())
-print("Sesonger:", api.get_seasons())
-print("Pågående sesong:", api.get_current_season(237))
+
+print(api.get_league_ids())
+print()
+print("==========LEAGUE==========")
+print(api.get_league_by_id(237))
+print()
+print("==========TEAMS==========")
 print(api.get_teams())
+print()
+print("==========STANDINGS==========")
+print(api.get_league_standings(237))
+print()
+print("==========TEAMS BY LEAGUE==========")
+print(api.get_teams_by_league(237))
+
