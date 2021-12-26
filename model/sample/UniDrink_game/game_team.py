@@ -1,4 +1,4 @@
-from api import API
+from model.api import API
 
 
 class Team:

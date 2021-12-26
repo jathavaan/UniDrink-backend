@@ -2,6 +2,7 @@
 API documentation:
 https://app.sportdataapi.com/documentation
 """
+
 import requests
 
 
@@ -9,6 +10,7 @@ class API:
     def __init__(self):
         self.__base_url = "https://app.sportdataapi.com/api/v1/soccer/"
         self.__api_key = "35180e80-4c9a-11ec-b94b-1b36a8153030"
+
         self.__leagues = self.__setup_leagues()
         self.__seasons = self.__setup_seasons()
         self.__teams = self.__setup_teams()
@@ -126,8 +128,6 @@ class API:
     def get_current_season(self, league_id: int):
         return next(filter(lambda season: season['is_current'] == 1, self.get_seasons_by_id(league_id)))
 
-    # MATCH
-
     # TEAM
 
     def __setup_teams(self):
@@ -178,18 +178,10 @@ class API:
 
 
 api = API()
+standings = api.get_seasons()
 
-print(api.get_league_ids())
-print()
-print("==========LEAGUE==========")
-print(api.get_league_by_id(237))
-print()
-print("==========TEAMS==========")
-print(api.get_teams())
-print()
-print("==========STANDINGS==========")
-print(api.get_league_standings(237))
-print()
-print("==========TEAMS BY LEAGUE==========")
-print(api.get_teams_by_league(237))
+for s in standings:
+    print(s)
+    print()
 
+print(len(standings))

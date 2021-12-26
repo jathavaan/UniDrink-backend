@@ -1,4 +1,4 @@
-from sample.UniDrink_game.game_user import User
+from static import User
 
 
 class Game:

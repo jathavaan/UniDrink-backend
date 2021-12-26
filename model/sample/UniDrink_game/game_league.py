@@ -1,6 +1,6 @@
-from sample.UniDrink_game.game_game import Game
-from sample.UniDrink_game.game_team import Team
-from sample.UniDrink_game.game_user import User
+from model.sample.UniDrink_game.game_game import Game
+from model.sample.UniDrink_game.game_team import Team
+from static import User
 
 
 class League:

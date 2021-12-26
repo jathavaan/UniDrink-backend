@@ -1,4 +1,4 @@
-from sample.api import API
+from model.api import API
 
 api = API()
 
@@ -66,6 +66,9 @@ class League:
                f"\n=> Country ID: {self.get_country_id()}" \
                f"\n=> Teams: \n{teams}"
 
+    def get_leagues(self) -> list:
+        return api.get_leagues()
+
 
 class Team:
     def __init__(self, team_id: int, name: str, short_code: str, logo: str):
@@ -85,7 +88,7 @@ class Team:
         self.__name = name
         self.__short_code = short_code
         self.__logo = logo
-        self.__setup_stats()
+        self.__stats = self.__setup_stats()
 
     def get_name(self) -> str:
         return self.__name
@@ -103,7 +106,6 @@ class Team:
         team_id = self.get_team_id()
 
         print(api.get_standings())
-
 
     def to_string(self) -> str:
         return f"{self.get_name()} [{self.get_short_code()}] | Team ID: {self.get_team_id()}"
@@ -124,6 +126,10 @@ class Team:
 
             season_id = current_season['season_id']
 
+        return season_id
+
+    def get_stats(self):
+        return self.__stats
 
 
 class Standings:
@@ -134,6 +140,7 @@ class Standings:
         if league_id not in api.get_league_ids():
             raise ValueError("Could not find a league ID tha matches:", league_id)
 
-        standings = api.get_league_standings(league_id)
+        self.__standings = api.get_league_standings(league_id)
 
-        print(standings)
+    def get_standings(self):
+        return self.__standings
