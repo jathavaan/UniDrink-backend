@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Football data {% endblock %}
+{% block content %}
+<section id="league-select">
+    <form id="select-league-form" action="{{url_for('fb_data.populateTable')}}" method="post">
+        <label for="select-league">Select a league: </label>
+        <select id="select-league" name="select-league">
+            {% for o in options %}
+            <option value="{{o}}">{{o["name"]}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" onclick="" value="Show data">
+    </form>
+</section>
+
+<div id="container">
+    <section id="table">
+        <table>
+            <tr>
+                <th>Pos.</th>
+                <th>Logo</th>
+                <th>Name</th>
+                <th>Played</th>
+                <th>Wins</th>
+                <th>Draws</th>
+                <th>Losses</th>
+                <th>Goals scored</th>
+                <th>Conceded</th>
+                <th>Difference</th>
+                <th>Points</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>url</td>
+                <td>MUFC</td>
+                <td>32</td>
+                <td>10</td>
+                <td>10</td>
+                <td>12</td>
+                <td>213</td>
+                <td>123</td>
+                <td>123</td>
+                <td>12332</td>
+            </tr>
+        </table>
+    </section>
+</div>
+{% endblock %}

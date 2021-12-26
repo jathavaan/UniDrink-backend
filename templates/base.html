@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style/style.css')}}">
+    <script type="text/javascript" src="../static//scripts/table.js"></script>
+    <title>UniDrink | {% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header id="menubar">
+        <nav id="menubar-links">
+            <a href="{{url_for('home')}}"><span id="logo" class="material-icons">sports_soccer</span></a>
+            <a href="{{url_for('fb_data.football_data')}}"><span class="material-icons">sports</span></a>
+            <a href="{{url_for('home')}}"><span class="material-icons">sports_bar</span></a>
+        </nav>
+
+        <section id="controls">
+            <button onClick=""><span class="material-icons">dark_mode</span></button>
+            <button onClick=""><span class="material-icons">language</span></button>
+            <div id="menubar-search">
+                <input type="text" placeholder="Search">
+                <input type="submit" value="Search">
+            </div>
+        </section>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <section>
+            <h3>About us:</h3>
+            <p>Content here</p>
+        </section>
+        
+        <section>
+            <h3>Contact us</h3>
+            <p>Content here</p>
+        </section>
+        
+        <section>
+            <h3>Sponsors</h3>
+            <p>Content here</p>
+        </section>
+    </footer>
+</body>
+</html>
