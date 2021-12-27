@@ -11,6 +11,7 @@ class API:
         self.__base_url = "https://app.sportdataapi.com/api/v1/soccer/"
         self.__api_key = "35180e80-4c9a-11ec-b94b-1b36a8153030"
 
+        self.__countries = self.__setup_countries()
         self.__leagues = self.__setup_leagues()
         self.__seasons = self.__setup_seasons()
         self.__teams = self.__setup_teams()
@@ -21,6 +22,29 @@ class API:
 
     def __get_api_key(self) -> str:
         return self.__api_key
+
+    # COUNTRY
+
+    def __setup_countries(self):
+        url = f"{self.__get_base_url()}countries"
+
+        headers = {
+            "apikey": self.__get_api_key()
+        }
+
+        params = (
+            ("continent", "Europe"),
+        )
+
+        return requests.get(url, headers=headers, params=params).json()
+
+    def get_countries(self):
+        data = self.__countries['data']
+        data_lst = []
+        for key, value in data.items():
+            data_lst.append(value)
+
+        return data_lst
 
     # LEAGUE
 
@@ -175,13 +199,3 @@ class API:
                     team_dicts.append(team)
 
         return team_dicts
-
-
-api = API()
-standings = api.get_seasons()
-
-for s in standings:
-    print(s)
-    print()
-
-print(len(standings))

@@ -1,12 +1,13 @@
+import datetime
 from xmlrpc.client import DateTime
 
 import sqlalchemy as sql
 from sqlalchemy import ForeignKey
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, relationship, backref
 
-engine = create_engine('sqlite:///unidrink_db.db', echo=True)
+engine = create_engine('sqlite:///db.db', echo=True)
 session = sessionmaker(bind=engine)()
 
 metadata = sql.MetaData(
@@ -26,8 +27,8 @@ class Country(Base):
     __tablename__ = 'countries'
     country_id = sql.Column('country_id', sql.Integer, autoincrement=False, primary_key=True)
     name = sql.Column('name', sql.String(100), nullable=False)
-    country_code = sql.Column('country_code', sql.String(100), nullable=False)
-    continent = sql.Column('continent', sql.String(100), nullable=False)
+    country_code = sql.Column('country_code', sql.String(100), nullable=True)
+    continent = sql.Column('continent', sql.String(100), nullable=True)
 
     def __init__(self, country_id: int, name: str, country_code: str, continent: str):
         if not isinstance(country_id, int):
@@ -36,10 +37,10 @@ class Country(Base):
         if not isinstance(name, str):
             raise TypeError("Invalid datatype")
 
-        if not isinstance(country_code, str):
+        if not isinstance(country_code, str) and country_code is not None:
             raise TypeError("Invalid datatype")
 
-        if not isinstance(continent, str):
+        if not isinstance(continent, str) and continent is not None:
             raise TypeError("Invalid datatype")
 
         self.country_id = country_id
@@ -56,12 +57,19 @@ class Country(Base):
                f")> "
 
 
+league_has_teams = sql.Table(
+    'league_has_teams',
+    Base.metadata,
+    sql.Column('league_id', sql.Integer, ForeignKey('leagues.league_id'), primary_key=True, autoincrement=False),
+    sql.Column('team_id', sql.Integer, ForeignKey('teams.team_id'), primary_key=True, autoincrement=False)
+)
+
+
 class League(Base):
     __tablename__ = 'leagues'
     league_id = sql.Column(
         'league_id',
         sql.Integer,
-        ForeignKey('leagues_has_teams.league_id', ondelete="CASCADE"),
         ForeignKey('seasons.league_id', ondelete="CASCADE"),
         autoincrement=False,
         primary_key=True
@@ -73,6 +81,7 @@ class League(Base):
         ForeignKey("countries.country_id", ondelete="CASCADE"),
         nullable=False
     )
+    teams = relationship('Team', secondary=league_has_teams)
 
     def __init__(self, league_id: int, name: str, country_id: int):
         if not isinstance(league_id, int):
@@ -100,19 +109,17 @@ class Team(Base):
     __tablename__ = 'teams'
     team_id = sql.Column(
         'team_id',
-        ForeignKey('leagues_has_teams.team_id', ondelete="CASCADE"),
+        sql.Integer,
         autoincrement=False,
-        primary_key=True
+        primary_key=True,
+        nullable=False
     )
-
-    # team = relationship('LeagueHasTeam', backref='teams')
-
     name = sql.Column('name', sql.String(100), nullable=False)
-    short_code = sql.Column('short_code', sql.String(10), nullable=False)
+    short_code = sql.Column('short_code', sql.String(10), nullable=True)
     logo = sql.Column('logo', sql.String(100), nullable=True)
     common_name = sql.Column('common_name', sql.String(100), nullable=True)
 
-    def __init__(self, team_id: int, name: str, short_code: int, logo: str, common_name: str):
+    def __init__(self, team_id: int, name: str, short_code: str, logo: str, common_name: str):
         if not isinstance(team_id, int):
             raise TypeError("Invalid datatype")
 
@@ -128,10 +135,16 @@ class Team(Base):
         if not isinstance(logo, str):
             raise TypeError("Invalid datatype")
 
+        self.team_id = team_id
+        self.name = name
+        self.short_code = short_code
+        self.logo = logo
+        self.common_name = common_name
+
     def __repr__(self):
         return f"<Team(" \
                f"team_id={self.team_id}, " \
-               f"name={self.self}, " \
+               f"name={self.name}, " \
                f"short_code={self.short_code}, " \
                f"logo={self.logo}, " \
                f"common_name={self.common_name}" \
@@ -147,8 +160,8 @@ class Season(Base):
     start_date = sql.Column('start_date', sql.DateTime, nullable=False)
     end_date = sql.Column('end_date', sql.DateTime, nullable=False)
 
-    def __init__(self, season_id: int, league_id: int, name: str, is_current: bool, start_date: DateTime,
-                 end_date: DateTime):
+    def __init__(self, season_id: int, league_id: int, name: str, is_current: bool, start_date: datetime.datetime,
+                 end_date: datetime.datetime):
         if not isinstance(season_id, int):
             raise TypeError("Invalid datatype")
 
@@ -161,10 +174,10 @@ class Season(Base):
         if not isinstance(is_current, bool):
             raise TypeError("Invalid datatype")
 
-        if not isinstance(start_date, DateTime):
+        if not isinstance(start_date, datetime.datetime):
             raise TypeError("Invalid datatype")
 
-        if not isinstance(end_date, DateTime):
+        if not isinstance(end_date, datetime.datetime):
             raise TypeError("Invalid datatype")
 
         self.season_id = season_id
@@ -191,19 +204,19 @@ class Standing(Base):
     season_id = sql.Column(
         'season_id',
         sql.Integer,
-        ForeignKey('seasons.season_id', ondelete="CASCADE"),
+        # ForeignKey('seasons.season_id', ondelete="CASCADE"),
         nullable=False
     )
     league_id = sql.Column(
         'league_id',
         sql.Integer,
-        ForeignKey('seasons.league_id', ondelete="CASCADE"),
+        # ForeignKey('seasons.league_id', ondelete="CASCADE"),
         nullable=False
     )
     team_id = sql.Column(
         'team_id',
         sql.Integer,
-        ForeignKey('teams.team_id', ondelete="CASCADE"),
+        # ForeignKey('teams.team_id', ondelete="CASCADE"),
         nullable=False
     )
 
@@ -283,10 +296,23 @@ class Standing(Base):
         self.away_goals_against = away_goals_against
 
 
+"""
 class LeagueHasTeam(Base):
     __tablename__ = 'leagues_has_teams'
-    league_id = sql.Column('league_id', sql.Integer, autoincrement=False, primary_key=True)
-    team_id = sql.Column('team_id', sql.Integer, autoincrement=False, primary_key=True)
+    league_id = sql.Column(
+        'league_id',
+        sql.Integer,
+        ForeignKey('leagues.league_id'),
+        autoincrement=False,
+        primary_key=True
+    )
+    team_id = sql.Column(
+        'team_id',
+        sql.Integer,
+        ForeignKey('teams.team_id'),
+        autoincrement=False,
+        primary_key=True
+    )
 
     def __init__(self, league_id: int, team_id: int):
         if not isinstance(league_id, int):
@@ -297,8 +323,8 @@ class LeagueHasTeam(Base):
 
         self.league_id = league_id
         self.team_id = team_id
+"""
 
 
 Base.metadata.create_all(engine)
-print(metadata.tables) # prints out the tables in the database
-
+print(metadata.tables)  # prints out the tables in the database
