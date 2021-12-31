@@ -13,7 +13,7 @@
     </form>
 </section>
 
-<div id="container">
+<div class="container">
     <section id="table">
         <table>
             <tr>
@@ -30,8 +30,8 @@
                 <th>P</th>
             </tr>
             {% for team in table %}
-                <tr>
-                    <td>{{team['position']}}</td>
+                <tr class="table-row">
+                    <td>{{team['position']}}.</td>
                     <td><img src="{{team['logo']}}" alt="{{team['name']}} logo"></td>
                     <td>{{team['name']}}</td>
                     <td>{{team['played']}}</td>

@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95946342-2d28-4dbf-838f-00053c41a174" name="Changes" comment="Can now read and write to database. Foreign keys relations are now fixed">
-      <change afterPath="$PROJECT_DIR$/views/football_data/football_data_db.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/add.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/add.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/football_data_db.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/retrieve.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/retrieve.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/football_data/fb_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/football_data/fb_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/football_data/templates/football_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/football_data/templates/football_data.html" afterDir="false" />
-    </list>
+    <list default="true" id="95946342-2d28-4dbf-838f-00053c41a174" name="Changes" comment="User is now able to select league and show table" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -208,6 +197,7 @@
       <workItem from="1640744594096" duration="2477000" />
       <workItem from="1640832188790" duration="6392000" />
       <workItem from="1640906174010" duration="11386000" />
+      <workItem from="1640918938915" duration="122000" />
     </task>
     <task id="LOCAL−00001" summary="Restrucutred project and added a database">
       <created>1640561230774</created>
@@ -233,7 +223,13 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1640641611197</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="User is now able to select league and show table">
+      <created>1640918992791</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1640918992791</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +252,8 @@
     <MESSAGE value="Restrucutred project and added a database" />
     <MESSAGE value="Changes in database file. Database is now up and running" />
     <MESSAGE value="Can now read and write to database. Foreign keys relations are now fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can now read and write to database. Foreign keys relations are now fixed" />
+    <MESSAGE value="User is now able to select league and show table" />
+    <option name="LAST_COMMIT_MESSAGE" value="User is now able to select league and show table" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/UniDrink$retrieve.coverage" NAME="retrieve Coverage Results" MODIFIED="1640918494816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />

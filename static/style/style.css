@@ -110,7 +110,7 @@ body::-webkit-scrollbar {
     background-size: cover;
 }
 
-/* FFOOTBALL DATA STYLING */
+/* FOOTBALL DATA STYLING */
 
 #league-select {
     width: 100%;
@@ -127,10 +127,36 @@ body::-webkit-scrollbar {
     color: #000000;
 }
 
-#container {
+#table {
+    padding: 40px 0px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#table tr {
+    transition: background-color 0.3s ease;
+}
+
+#table table, #table th, #table td {
+    border-collapse: collapse;
+}
+
+#table th, #table td {
+    padding: 5px 10px;
+}
+
+#table td img {
+    height: 30px;
+}
+
+#table tr:nth-child(2n) {
+    background-color: #131313;
+}
+
+#table tr:hover {
+    background-color: #1b1b1b;
 }
 
 /* FOOTER STYLING */
