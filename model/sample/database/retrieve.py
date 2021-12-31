@@ -1,4 +1,4 @@
-from database.db import Country, Season, Standing, Team, engine, League, session
+from model.sample.database.db import Country, Season, Standing, Team, engine, League, session
 
 
 def get_countries():
@@ -7,24 +7,6 @@ def get_countries():
 
 
 def get_leagues():
-    """
-    leagues = []
-    with engine.connect() as con:
-        results = con.execute('SELECT * FROM leagues')
-
-        data = {}
-        for result in results:
-            league_id, name, country_id = result
-
-            data['league_id'] = league_id
-            data['name'] = name
-            data['country'] = country_id
-
-            leagues.append(data)
-
-    return leagues
-    """
-
     results = session.query(League).all()
     for r in results:
         print(r)
@@ -74,6 +56,3 @@ def get_table(league_id: int):
             table.append(data)
 
     return table
-
-
-print(get_table(237))

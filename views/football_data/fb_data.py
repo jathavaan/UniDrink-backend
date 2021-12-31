@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 
-import database.retrieve as retrieve
+import model.sample.database.retrieve as retrieve
 
 fb_data = Blueprint('fb_data', __name__, static_folder="static", template_folder="templates")
 

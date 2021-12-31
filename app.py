@@ -3,8 +3,9 @@ from datetime import timedelta
 import sqlalchemy.exc
 from flask import Flask, render_template
 
-from database.add import add_countries, add_leagues, add_teams, add_seasons, add_standings, populate_leagues_has_teams
-from database.retrieve import get_countries, get_leagues, get_teams, get_seasons, get_standings
+from model.sample.database.add import add_countries, add_leagues, add_teams, add_seasons, add_standings, populate_leagues_has_teams
+from model.sample.database.db import init_db
+from model.sample.database.retrieve import get_countries, get_leagues, get_teams, get_seasons, get_standings
 from views.football_data.fb_data import fb_data
 
 app = Flask(__name__)
@@ -19,6 +20,8 @@ def home():
 
 
 if __name__ == '__main__':
+    init_db()
+
     try:
         if len(get_countries()) == 0:
             add_countries()
@@ -34,7 +37,7 @@ if __name__ == '__main__':
     try:
         if len(get_teams()) == 0:
             add_teams()
-    except sqlalchemy.exc.IntegrityError as e:
+    except Exception as e:
         print(str(e))
 
     try:

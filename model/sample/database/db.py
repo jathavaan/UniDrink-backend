@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///football_data_db.db', connect_args={'check_same_thread': False}, echo=True)
+engine = create_engine('sqlite:///football_data.db', connect_args={'check_same_thread': False}, echo=True)
 session = sessionmaker(autoflush=False, bind=engine)()
 
 metadata = sql.MetaData(
@@ -324,7 +324,4 @@ class Standing(Base):
 
 def init_db():
     Base.metadata.create_all(bind=engine)
-    print(metadata.tables)  # prints out the tables in the database
-
-
-init_db()
+    # print(metadata.tables)  # prints out the tables in the database

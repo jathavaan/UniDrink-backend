@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95946342-2d28-4dbf-838f-00053c41a174" name="Changes" comment="User is now able to select league and show table" />
+    <list default="true" id="95946342-2d28-4dbf-838f-00053c41a174" name="Changes" comment="Styled table">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sample/database/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/add.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sample/database/add.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sample/database/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/retrieve.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sample/database/retrieve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/football_data_db.db" beforeDir="false" afterPath="$PROJECT_DIR$/football_data.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/sample/UniDrink_football_data/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/sample/UniDrink_football_data/country.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/sample/UniDrink_football_data/football_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/sample/UniDrink_football_data/league.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/sample/UniDrink_football_data/team.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/football_data/fb_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/football_data/fb_data.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,6 +66,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jatha\PycharmProjects\UniDrink\model\sample" />
       <recent name="C:\Users\jatha\PycharmProjects\UniDrink" />
       <recent name="C:\Users\jatha\PycharmProjects\UniDrink\views\football_data\templates" />
       <recent name="C:\Users\jatha\PycharmProjects\UniDrink\static" />
@@ -170,10 +187,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.app" />
+        <item itemvalue="Python.db (1)" />
+        <item itemvalue="Python.add" />
         <item itemvalue="Python.fb_data" />
         <item itemvalue="Python.retrieve" />
-        <item itemvalue="Python.add" />
-        <item itemvalue="Python.db (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -198,6 +215,7 @@
       <workItem from="1640832188790" duration="6392000" />
       <workItem from="1640906174010" duration="11386000" />
       <workItem from="1640918938915" duration="122000" />
+      <workItem from="1640920611366" duration="2077000" />
     </task>
     <task id="LOCAL−00001" summary="Restrucutred project and added a database">
       <created>1640561230774</created>
@@ -229,7 +247,13 @@
       <option name="presentableId" value="LOCAL−00005" />
       <updated>1640918992791</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL−00006" summary="Styled table">
+      <created>1640920797828</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1640920797829</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,16 +277,17 @@
     <MESSAGE value="Changes in database file. Database is now up and running" />
     <MESSAGE value="Can now read and write to database. Foreign keys relations are now fixed" />
     <MESSAGE value="User is now able to select league and show table" />
-    <option name="LAST_COMMIT_MESSAGE" value="User is now able to select league and show table" />
+    <MESSAGE value="Styled table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Styled table" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/UniDrink$retrieve.coverage" NAME="retrieve Coverage Results" MODIFIED="1640918494816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
-    <SUITE FILE_PATH="coverage/UniDrink$app.coverage" NAME="app Coverage Results" MODIFIED="1640918613633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/UniDrink$app.coverage" NAME="app Coverage Results" MODIFIED="1640957397961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/UniDrink$football_data.coverage" NAME="football_data Coverage Results" MODIFIED="1640545040526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/sample/UniDrink_football_data" />
-    <SUITE FILE_PATH="coverage/UniDrink$db__1_.coverage" NAME="db (1) Coverage Results" MODIFIED="1640916156991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
+    <SUITE FILE_PATH="coverage/UniDrink$db__1_.coverage" NAME="db (1) Coverage Results" MODIFIED="1640921764690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
     <SUITE FILE_PATH="coverage/UniDrink$fb_data.coverage" NAME="fb_data Coverage Results" MODIFIED="1640918510245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/views/football_data" />
     <SUITE FILE_PATH="coverage/UniDrink$api.coverage" NAME="api Coverage Results" MODIFIED="1640665770041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/UniDrink$database.coverage" NAME="database Coverage Results" MODIFIED="1640615369398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
-    <SUITE FILE_PATH="coverage/UniDrink$add.coverage" NAME="add Coverage Results" MODIFIED="1640916300352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
+    <SUITE FILE_PATH="coverage/UniDrink$add.coverage" NAME="add Coverage Results" MODIFIED="1640921528789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
   </component>
 </project>

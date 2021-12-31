@@ -1,7 +1,7 @@
 import datetime
 
-from database.db import League, session, Country, Team, Season, Standing, LeagueHasTeam
-from database.retrieve import get_standings
+from model.sample.database.db import League, session, Country, Team, Season, Standing, LeagueHasTeam
+from model.sample.database.retrieve import get_standings
 from model.api import API
 
 api = API()
@@ -20,7 +20,7 @@ def add_countries():
         session.add(new_country)
         session.commit()
 
-        print("Added country: " + new_country.__repr__())
+        # print("Added country: " + new_country.__repr__())
 
 
 def add_leagues():
@@ -35,7 +35,7 @@ def add_leagues():
         session.add(new_league)
         session.commit()
 
-        print("Added league: " + new_league.__repr__())
+        # print("Added league: " + new_league.__repr__())
 
 
 def add_teams():
@@ -50,12 +50,10 @@ def add_teams():
             common_name = team['common_name']
             logo = team['logo']
 
-            print(team_id, name, short_code, common_name, logo)
-
             new_team = Team(team_id, name, short_code, logo, common_name)
             session.add(new_team)
             session.commit()
-            print("Added team: " + new_team.__repr__())
+            # print("Added team: " + new_team.__repr__())
 
 
 def add_seasons():
@@ -147,7 +145,7 @@ def add_standings():
             session.add(new_standing)
             session.commit()
 
-            print("Added standing: " + new_standing.__repr__())
+            # print("Added standing: " + new_standing.__repr__())
 
 
 def populate_leagues_has_teams():
@@ -160,17 +158,4 @@ def populate_leagues_has_teams():
         session.add(new_league_has_team)
         session.commit()
 
-        print("Added league/team connection: " + new_league_has_team.__repr__())
-        print()
-
-
-def main():
-    add_countries()
-    add_leagues()
-    add_teams()
-    add_seasons()
-    add_standings()
-    populate_leagues_has_teams()
-
-
-# main()
+        # print("Added league/team connection: " + new_league_has_team.__repr__())

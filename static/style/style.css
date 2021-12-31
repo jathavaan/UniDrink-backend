@@ -11,6 +11,10 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
     height: 100%;
+
+    font-family: 'Corinthia', cursive;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Quicksand', sans-serif;
 }
 
 body::-webkit-scrollbar {
