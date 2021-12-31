@@ -2,14 +2,14 @@
 {% block title %}Football data {% endblock %}
 {% block content %}
 <section id="league-select">
-    <form id="select-league-form" action="{{url_for('fb_data.populateTable')}}" method="post">
+    <form id="select-league-form" action="{{url_for('fb_data.football_data')}}" method="POST">
         <label for="select-league">Select a league: </label>
         <select id="select-league" name="select-league">
-            {% for o in options %}
-            <option value="{{o}}">{{o["name"]}}</option>
+            {% for league in leagues %}
+                <option value="{{league['league_id']}}">{{league['name']}}</option>
             {% endfor %}
         </select>
-        <input type="submit" onclick="" value="Show data">
+        <input type="submit" value="Show data">
     </form>
 </section>
 
@@ -17,31 +17,33 @@
     <section id="table">
         <table>
             <tr>
-                <th>Pos.</th>
-                <th>Logo</th>
-                <th>Name</th>
-                <th>Played</th>
-                <th>Wins</th>
-                <th>Draws</th>
-                <th>Losses</th>
-                <th>Goals scored</th>
-                <th>Conceded</th>
-                <th>Difference</th>
-                <th>Points</th>
+                <th></th> <!--Position-->
+                <th></th> <!--Logo-->
+                <th></th> <!--Team name-->
+                <th>P</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GS</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th>P</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>url</td>
-                <td>MUFC</td>
-                <td>32</td>
-                <td>10</td>
-                <td>10</td>
-                <td>12</td>
-                <td>213</td>
-                <td>123</td>
-                <td>123</td>
-                <td>12332</td>
-            </tr>
+            {% for team in table %}
+                <tr>
+                    <td>{{team['position']}}</td>
+                    <td><img src="{{team['logo']}}" alt="{{team['name']}} logo"></td>
+                    <td>{{team['name']}}</td>
+                    <td>{{team['played']}}</td>
+                    <td>{{team['won']}}</td>
+                    <td>{{team['draw']}}</td>
+                    <td>{{team['lost']}}</td>
+                    <td>{{team['scored']}}</td>
+                    <td>{{team['against']}}</td>
+                    <td>{{team['diff']}}</td>
+                    <td>{{team['points']}}</td>
+                </tr>
+            {% endfor %}
         </table>
     </section>
 </div>

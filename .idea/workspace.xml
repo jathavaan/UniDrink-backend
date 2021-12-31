@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95946342-2d28-4dbf-838f-00053c41a174" name="Changes" comment="Changes in database file. Database is now up and running">
-      <change afterPath="$PROJECT_DIR$/database/add.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/retrieve.py" afterDir="false" />
+    <list default="true" id="95946342-2d28-4dbf-838f-00053c41a174" name="Changes" comment="Can now read and write to database. Foreign keys relations are now fixed">
+      <change afterPath="$PROJECT_DIR$/views/football_data/football_data_db.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/unidrink_db.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/add.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/add.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/football_data_db.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/retrieve.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/retrieve.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/football_data/fb_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/football_data/fb_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/football_data/templates/football_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/football_data/templates/football_data.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +67,7 @@
       <recent name="C:\Users\jatha\PycharmProjects\UniDrink\model" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.add">
+  <component name="RunManager" selected="Python.app">
     <configuration name="add" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="UniDrink" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -86,7 +90,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="api" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="UniDrink" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -94,12 +98,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/api.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -130,7 +134,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="db" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="fb_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="UniDrink" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,12 +142,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/database" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/views/football_data" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\jatha\PycharmProjects\UniDrink\database\db.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/views/football_data/fb_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -176,11 +180,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.add" />
+        <item itemvalue="Python.app" />
+        <item itemvalue="Python.fb_data" />
         <item itemvalue="Python.retrieve" />
+        <item itemvalue="Python.add" />
         <item itemvalue="Python.db (1)" />
-        <item itemvalue="Python.api" />
-        <item itemvalue="Python.db" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +202,12 @@
       <workItem from="1640270795046" duration="1858000" />
       <workItem from="1640306109475" duration="254000" />
       <workItem from="1640344692490" duration="7575000" />
-      <workItem from="1640524806070" duration="53273000" />
+      <workItem from="1640524806070" duration="53317000" />
+      <workItem from="1640660246175" duration="5018000" />
+      <workItem from="1640722159755" duration="1597000" />
+      <workItem from="1640744594096" duration="2477000" />
+      <workItem from="1640832188790" duration="6392000" />
+      <workItem from="1640906174010" duration="11386000" />
     </task>
     <task id="LOCAL−00001" summary="Restrucutred project and added a database">
       <created>1640561230774</created>
@@ -218,7 +227,13 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1640613890416</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="Can now read and write to database. Foreign keys relations are now fixed">
+      <created>1640641611197</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1640641611197</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,15 +255,17 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Restrucutred project and added a database" />
     <MESSAGE value="Changes in database file. Database is now up and running" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes in database file. Database is now up and running" />
+    <MESSAGE value="Can now read and write to database. Foreign keys relations are now fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Can now read and write to database. Foreign keys relations are now fixed" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/UniDrink$retrieve.coverage" NAME="retrieve Coverage Results" MODIFIED="1640638451134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
-    <SUITE FILE_PATH="coverage/UniDrink$app.coverage" NAME="app Coverage Results" MODIFIED="1640531687022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/UniDrink$retrieve.coverage" NAME="retrieve Coverage Results" MODIFIED="1640918494816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
+    <SUITE FILE_PATH="coverage/UniDrink$app.coverage" NAME="app Coverage Results" MODIFIED="1640918613633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/UniDrink$football_data.coverage" NAME="football_data Coverage Results" MODIFIED="1640545040526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/sample/UniDrink_football_data" />
-    <SUITE FILE_PATH="coverage/UniDrink$db__1_.coverage" NAME="db (1) Coverage Results" MODIFIED="1640638259552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
-    <SUITE FILE_PATH="coverage/UniDrink$api.coverage" NAME="api Coverage Results" MODIFIED="1640631344435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
+    <SUITE FILE_PATH="coverage/UniDrink$db__1_.coverage" NAME="db (1) Coverage Results" MODIFIED="1640916156991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
+    <SUITE FILE_PATH="coverage/UniDrink$fb_data.coverage" NAME="fb_data Coverage Results" MODIFIED="1640918510245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/views/football_data" />
+    <SUITE FILE_PATH="coverage/UniDrink$api.coverage" NAME="api Coverage Results" MODIFIED="1640665770041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/UniDrink$database.coverage" NAME="database Coverage Results" MODIFIED="1640615369398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
-    <SUITE FILE_PATH="coverage/UniDrink$add.coverage" NAME="add Coverage Results" MODIFIED="1640639998293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
+    <SUITE FILE_PATH="coverage/UniDrink$add.coverage" NAME="add Coverage Results" MODIFIED="1640916300352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/database" />
   </component>
 </project>
